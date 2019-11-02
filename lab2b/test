@@ -1,0 +1,33 @@
+#!/bin/bash
+
+rm lab2b_list.csv
+touch lab2b_list.csv
+
+declare -a THREADS
+declare -a ITER
+declare -a ITER2
+
+THREADS=(1, 2, 4, 8, 12, 16, 24)
+ITER=(1, 2, 4, 8, 16)
+ITER2=(10, 20, 40, 80)
+LISTS=(4, 8, 16)
+
+for i in ${THREADS[@]}
+do
+    ./lab2_list --iterations=1000 --threads=$i --sync=m >> lab2b_list.csv
+    ./lab2_list --iterations=1000 --threads=$i --sync=s >> lab2b_list.csv
+    for j in ${ITER[@]}
+    do
+	./lab2_list --iterations=$j --threads=$i --yield=id --lists=4 >> lab2b_list.csv
+    done
+    for k in ${ITER[@]}
+    do
+	./lab2_list --iterations=$k --threads=$i --yield=id --lists=4 --sync=m >> lab2b_list.csv
+	./lab2_list --iterations=$k --threads=$i --yield=id --lists=4 --sync=s >> lab2b_list.csv
+    done
+    for l in ${LISTS[@]}
+    do
+	./lab2_list --iterations=1000 --threads=$i --lists=$l --sync=m >> lab2b_list.csv
+	./lab2_list --iterations=1000 --threads=$i --lists=$l --sync=s >> lab2b_list.csv
+    done
+done
