@@ -1,0 +1,56 @@
+#!/bin/sh
+
+#NAME: Erica Xie
+#EMAIL: ericaxie@ucla.edu
+#ID: 404720875
+
+`touch test.txt`
+`echo "what" >> test.txt` 
+
+#testing exit code 0 
+`./lab0 --input test.txt --output testout.txt`
+if [ "$?" -eq "0" ];
+then
+    echo "succeed"
+else
+    echo "failed"
+fi
+
+#testing exit code 1
+`./lab0 --wrong test.txt`
+if [ "$?" -eq "1" ];
+then
+    echo "succeed"
+else
+    echo "failed"
+fi
+
+#testing exit code 2
+`./lab0 --input wrong.txt`
+if [ "$?" -eq "2" ];
+then
+    echo "succeed"
+else
+    echo "failed"
+fi
+
+#testing exit code 3
+`chmod -w testout.txt`
+`./lab0 --input test.txt --output testout.txt`
+if [ "$?" -eq "3" ];
+then
+    echo "succeed"
+else
+    echo "failed"
+fi
+
+#testing exit code 4
+`./lab0 --segfault --catch`
+if [ "$?" -eq "4" ];
+then
+    echo "succeed"
+else
+    echo "failed"
+fi
+
+`rm -f test.txt testout.txt`
