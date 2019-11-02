@@ -1,0 +1,39 @@
+NAME: Erica Xie, Michelle Lam
+EMAIL: ericaxie@ucla.edu, laammichelle@gmail.com
+ID: 404920875, 404926523
+
+
+
+DESCRIPTION OF FILES INCLUDED:
+
+In the lab3b-404926523.tar.gz there is
+- A lab3b.py that takes in a .csv file with file system descriptions and parses through it to find any file system inconsistencies.
+  The checker performs block consistency audits, i-node allocation audits and directory consistency audits. It is assumed that the file
+  system is within one group.
+
+- A Makefile included that
+  - default: creates a symlink to the python code and prints a sucess message
+  - clean: removes all files created by the Makefile
+  - dist: creates a tarball
+
+- A README with a description of the files and list of sources used.
+
+TESTING METHODOLOGY:
+
+Testing was done incrementally by using each individual corrupted CSV file provided by the sanity script.
+Sections of the file consistency checker were done at a time according to the provided sections of the spec.
+
+-------------------------------------
+
+RESOURCES:
+Referenced CS 111 spec and the links attached to it
+Referenced Zhaoxing Bu's Wk 9 Discussion Notes and Pseudo Code
+Referenced Piazza posts
+Referenced symbolic link creation tutorial:
+https://kite.com/python/examples/1484/os-create-a-symbolic-link
+Referenced nongnu org for file system concepts:
+https://www.nongnu.org/ext2-doc/ext2.html#def-symbolic-links
+Referenced inode directory concepts (parent, root, ... inodes):
+http://teaching.idallen.com/dat2330/04f/notes/links_and_inodes.html
+Referenced Python exception handling:
+https://www.tutorialspoint.com/python/python_exceptions.htm
