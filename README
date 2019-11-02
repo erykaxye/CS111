@@ -1,0 +1,33 @@
+NAME: Erica Xie
+EMAIL: ericaxie@ucla.edu
+ID: 404920875
+
+
+DESCRIPTION OF FILES INCLUDED:
+In the lab1a-404920875.tar.gz there is
+- A .c file holding the C code called lab0.c. This file takes different arguments and reads and writes to either stdin/stdout or specified files depending o\
+n the arguments inputted. There is also a choice of created a segmentation fault in the code and a signal handler that catches the segmentation fault.
+- A Makefile included that compiles the .c file, runs a smoke-test, removes all files created by the Makefile, and creates a tarball.
+- 2 screenshots of gdb sessions.
+
+
+
+SMOKE-TEST CASES:
+I included test cases for each exit code.
+For exit(0), I run correct command that uses --input and --output which results in an exit code of 0.
+For exit(1), I run a command with an argument that is not recognized --wrong which results in the exit code of 1.
+For exit(2), I run --input for a file that doesn't exist which results in an exit code of 2.
+For exit(3), I write protect a file and try to write to it with --output which results in the exit code of 3.
+For exit(4), I write a correct command with --segfault --catch that results in an exit code of 4.
+
+
+
+RESOURCES:
+Referenced CS 111 spec and the links attached to it
+Referenced TA Zhaoxing Bu's sample code 
+Referenced Eggert's CS35L Assignment 7 Makefile
+Referenced my CS35L Assignment 7 Makefile
+Referenced Piazza posts
+Referenced kill, execvp, poll man pages and attached examples 
+Referenced sample code from 17.7 Noncanonical Mode Example: https://www.gnu.org/software/libc/manual/html_node/Noncanon-Example.html#Noncanon-Example
+http://pubs.opengroup.org/onlinepubs/007904875/functions/poll.html 
