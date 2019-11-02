@@ -1,0 +1,27 @@
+NAME: Erica Xie
+EMAIL: ericaxie@ucla.edu
+ID: 404920875
+
+
+
+Serial number of Beaglebone: X0013UH933
+WiFi MAC address: 2c:f7:f1:06:63:68
+
+
+
+DESCRIPTION OF FILES INCLUDED:
+In the lab4a-404920875.tar.gz there is
+- a my_beaglebone.jpg which is a selfie of me holding my Beaglebone (showing the front of the board).
+- a connected.png which is a screenshot from a USB terminal command session connected to your system, showing that you gave it a name and configured network access.
+- copy.png screen shot that shows a local session of Filezilla where I copy a helloworld.c program from my laptop to my Beaglebone.
+- a build_run.png which is a screen shot from a Putty session where I compile and run the helloworld.c program I copied into the BeagleBone.
+- a git.png which is a screen shot from a WIFI SSH session in which I installed git and cloned my basic github repository.
+- a Makefile that builds the submission tarball.
+- a README file containing descripton of the files included in the submission tarball
+
+
+
+RESOURCES:
+Referenced CS 111 spec and the links attached to it 
+Referenced Eggert's CS35L Assignment 7 Makefile
+Referenced my CS35L Assignment 7 Makefile
