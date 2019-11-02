@@ -1,0 +1,29 @@
+NAME: Erica Xie
+EMAIL: ericaxie@ucla.edu
+ID: 404920875
+
+
+
+DESCRIPTION OF FILES INCLUDED:
+In the lab1b-404920875.tar.gz there is
+- A lab1b-client.c file that creates a socket that connects to a server and writes bytes. There is an option for log which logs all the bytes sent across the socket and a compressed option that compresses the bytes sent across the socket. 
+- A lab1b-server.c file that receives bytes from the socket and sends it to a shell to process the command and send its back through the socket. There is also an option for compressed in the server. 
+- A Makefile included that compiles all the .c files, removes all files created by the Makefile, and creates a tarball.
+
+
+
+TESTING METHODOLOGY
+run the sanity test 
+
+
+
+RESOURCES:
+Referenced CS 111 spec and the links attached to it
+Referenced TA Zhaoxing Bu's sample code
+Referenced Eggert's CS35L Assignment 7 Makefile
+Referenced my CS35L Assignment 7 Makefile 
+Referenced Piazza posts
+Referenced socket, kill, execvp, poll, memset, memcpy, sprintf, setrlimit man pages and attached examples
+Referenced sample code from 17.7 Noncanonical Mode Example: https://www.gnu.org/software/libc/manual/html_node/Noncanon-Example.html#Noncanon-Example
+http://pubs.opengroup.org/onlinepubs/007904875/functions/poll.html
+https://www.tutorialspoint.com/unix_sockets/socket_client_example.htm
