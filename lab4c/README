@@ -1,0 +1,47 @@
+NAME: Erica Xie
+EMAIL: ericaxie@ucla.edu
+ID: 404920875
+
+
+
+DESCRIPTION OF FILES INCLUDED: 
+
+In the lab4c-404920875.tar.gz there is: 
+- A lab4c_tcp.c that connects the BeagleBone to a TCP server specified by port and host options and receives commands and logs them. It takes the time and the temperature from BeagleBone sensors with the following options: --period specifies the period in between readings, --scale changes between Fahrenheit & Celsius, --log writes the readings and the extra commands inputted through stdin. The extra commands from stdin are SCALE=F, SCALE=C, PERIOD=seconds, LOG text, STOP, START, OFF.  
+
+- A lab4c_tls.c that connects the BeagleBone to a TCP server with SSL protection specified by port and host options and receives commands and logs them. It takes the time and the temperature from BeagleBone sensors with the following options: --period specifies the period in between readings, --scale changes between Fahrenheit & Celsius, --log writes the readings and the extra commands inputted through stdin. The extra commands from stdin are SCALE=F, SCALE=C, PERIOD=seconds, LOG text, STOP, START, OFF.
+
+- A smoke-test script that tests the extra stdin commands. 
+
+- A commands.txt file that pipes in commands to the smoke-test script.
+
+- A Makefile included that
+  - build: compiles the .c file
+  - clean: removes all files created by the Makefile
+  - dist: creates a tarball.
+
+- A README with a description of the files included and list of sources used.
+
+
+
+-------------------------------------
+
+
+
+RESOURCES:
+Referenced CS 111 spec and the links attached to it
+Referenced Eggert's CS35L Assignment 7 Makefile
+Referenced my CS35L Assignment 7 Makefile
+Referenced Piazza posts
+Referenced Zhaoxing Bu's TA sample code
+Referenced Alex Tirad's TA slides 
+Referenced localtime, mraa, fflush, open man pages and attached example code 
+http://wiki.seeedstudio.com/Grove-Temperature_Sensor_V1.2/ 
+https://www.tutorialspoint.com/c_standard_library/c_function_localtime.htm
+https://drive.google.com/drive/folders/0B6dyEb8VXZo-N3hVcVI0UFpWSVk 
+https://iotdk.intel.com/docs/master/mraa/
+http://man7.org/linux/man-pages/man3/fflush.3.html
+http://man7.org/linux/man-pages/man2/open.2.html
+https://www.gnu.org/software/libc/manual/html_node/Example-of-Getopt.html#Example-of-Getopt 
+https://www.geeksforgeeks.org/tcp-server-client-implementation-in-c/ 
+
