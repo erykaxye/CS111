@@ -1,0 +1,126 @@
+... using test directory /u/eng/ugrad/ericax/lab2a/CS111_test.ericax
+... extracting /u/eng/ugrad/ericax/lab2a/lab2a-404920875.tar.gz
+Makefile
+README
+lab2_add.c
+lab2_list.c
+SortedList.h
+SortedList.c
+lab2_add.csv
+lab2_list.csv
+lab2_add-1.png
+lab2_add-2.png
+lab2_add-3.png
+lab2_add-4.png
+lab2_add-5.png
+lab2_list-1.png
+lab2_list-2.png
+lab2_list-3.png
+lab2_list-4.png
+test1
+test2
+... checking for README file
+... checking for submitter ID in README
+... checking for submitter email in README
+... checking for submitter name in README
+... checking slip-day use in README
+    no SLIPDAYS: entry
+... checking for other expected files
+... checking for required Make targets
+... checking for required compillation options
+... building default target(s)
+gcc -Wall -Wextra -g -lpthread  lab2_add.c -o lab2_add
+gcc -Wall -Wextra -g -lpthread  lab2_list.c SortedList.c -o lab2_list  
+... deleting all data and graphs to force rebuild
+... checking make dist
+tar czf lab2a-404920875.tar.gz Makefile README lab2_add.c lab2_list.c SortedList.h SortedList.c lab2_add.csv lab2_list.csv lab2_add-1.png lab2_add-2.png lab2_add-3.png lab2_add-4.png lab2_add-5.png lab2_list-1.png lab2_list-2.png lab2_list-3.png lab2_list-4.png test1 test2
+ ... checking make clean
+rm -f lab2a-404920875.tar.gz lab2_add lab2_list lab2_add.csv lab2_list.csv lab2_add-1.png lab2_add-2.png lab2_add-3.png lab2_add-4.png lab2_add-5.png lab2_list-1.png lab2_list-2.png lab2_list-3.png lab2_list-4.png
+/tmp/DIRSNAP.38181 /tmp/DIRCHECK.38181 differ: byte 14, line 3
+Incorrect directory contents:
+3,7d2
+< lab2_add-1.png
+< lab2_add-2.png
+< lab2_add-3.png
+< lab2_add-4.png
+< lab2_add-5.png
+9,13d3
+< lab2_add.csv
+< lab2_list-1.png
+< lab2_list-2.png
+< lab2_list-3.png
+< lab2_list-4.png
+15d4
+< lab2_list.csv
+... redo default make
+gcc -Wall -Wextra -g -lpthread  lab2_add.c -o lab2_add
+gcc -Wall -Wextra -g -lpthread  lab2_list.c SortedList.c -o lab2_list  
+... checking for expected products
+... ./lab2_add detects/reports bogus arguments
+        ././lab2_add: unrecognized option '--bogus'
+Invalid Argument
+... ./lab2_list detects/reports bogus arguments
+        7 ././lab2_list: unrecognized option '--bogus'
+Invalid Argument
+... testing ./lab2_add --iterations=2 --threads=1 --yield --sync=m
+        number of fields: 7 ... OK
+        output tag (field 1): add-yield-m ... OK
+        threads (field 2): 1 ... OK
+        iterations (field 3): 2 ... OK
+        operations (field 4): 4 ... OK
+        time/run (field 5): 93301 ... PLAUSIBLE, (EXPECTED 2-10000000)
+        time/op (field 6): 23325 ... PLAUSIBLE, (EXPECTED 23324-23326)
+        sum (field 7): 0 ... OK
+... testing ./lab2_add --iterations=2 --threads=1 --yield --sync=c
+        number of fields: 7 ... OK
+        output tag (field 1): add-yield-c ... OK
+        threads (field 2): 1 ... OK
+        iterations (field 3): 2 ... OK
+        operations (field 4): 4 ... OK
+        time/run (field 5): 85255 ... PLAUSIBLE, (EXPECTED 2-10000000)
+        time/op (field 6): 21313 ... PLAUSIBLE, (EXPECTED 21312-21314)
+        sum (field 7): 0 ... OK
+... testing ./lab2_add --iterations=2 --threads=1 --yield --sync=s
+        number of fields: 7 ... OK
+        output tag (field 1): add-yield-s ... OK
+        threads (field 2): 1 ... OK
+        iterations (field 3): 2 ... OK
+        operations (field 4): 4 ... OK
+        time/run (field 5): 115073 ... PLAUSIBLE, (EXPECTED 2-10000000)
+        time/op (field 6): 28768 ... PLAUSIBLE, (EXPECTED 28767-28769)
+        sum (field 7): 0 ... OK
+... testing ./lab2_list --iterations=2 --threads=1 --yield=idl --sync=m
+        number of fields: 7 ... OK
+        output tag (field 1): list-idl-m ... OK
+        threads (field 2): 1 ... OK
+        iterations (field 3): 2 ... OK
+        lists (field 4): 1 ... OK
+        operations (field 5): 6 ... OK
+        time/run (field 6): 108330 ... PLAUSIBLE, (EXPECTED 2-10000000)
+        time/op (field 7): 18055 ... PLAUSIBLE, (EXPECTED 18054-18056)
+... testing ./lab2_list --iterations=2 --threads=1 --yield=idl --sync=s
+        number of fields: 7 ... OK
+        output tag (field 1): list-idl-s ... OK
+        threads (field 2): 1 ... OK
+        iterations (field 3): 2 ... OK
+        lists (field 4): 1 ... OK
+        operations (field 5): 6 ... OK
+        time/run (field 6): 106114 ... PLAUSIBLE, (EXPECTED 2-10000000)
+        time/op (field 7): 17685 ... PLAUSIBLE, (EXPECTED 17684-17686)
+... usage of expected library functions
+    ... sched_yield ... OK
+    ... pthread_mutex_lock ... OK
+    ... pthread_mutex_unlock ... OK
+    ... __sync_val_compare_and_swap ... OK
+    ... __sync_lock_test_and_set ... OK
+    ... __sync_lock_release ... OK
+
+THIS SUBMISSION WILL USE NO SLIP-DAYS
+
+THE ONLY STUDENTS WHO WILL RECEIVE CREDIT FOR THIS SUBMISSION ARE:
+    404920875    ericaxie@ucla.edu
+
+... cleaning up temporary files
+... removing test directory /u/eng/ugrad/ericax/lab2a/CS111_test.ericax
+
+SUBMISSION lab2a-404920875.tar.gz ... FAILS sanity check with 5 errors

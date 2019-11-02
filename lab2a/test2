@@ -7,7 +7,7 @@ declare -a THREADS
 declare -a ITER
 declare -a ITER2
 
-THREADS=(2, 4, 8, 12)
+THREADS=(1, 2, 4, 8, 12)
 ITER=(1, 10, 100, 1000)
 ITER2=(1, 2, 4, 8, 16, 32) 
 
@@ -33,31 +33,14 @@ do
         ./lab2_list --iterations=$k --threads=$i --yield=dl --sync=s >> lab2_list.csv
 	./lab2_list --iterations=$k --threads=$i --sync=m >> lab2_list.csv
 	./lab2_list --iterations=$k --threads=$i --sync=s >> lab2_list.csv
-	./lab2_list --iterations=$k --threads=1 --sync=m >> lab2_list.csv
-        ./lab2_list --iterations=$k --threads=1 --sync=s >> lab2_list.csv
     done
     ./lab2_list --iterations=1000 --threads=$i --sync=m >> lab2_list.csv
     ./lab2_list --iterations=1000 --threads=$i --sync=s >> lab2_list.csv
 
 done
 
-./lab2_list --iterations=10 --threads=1 >> lab2_list.csv
-./lab2_list --iterations=100 --threads=1 >> lab2_list.csv
-./lab2_list --iterations=1000 --threads=1 >> lab2_list.csv
 ./lab2_list --iterations=10000 --threads=1 >> lab2_list.csv
 ./lab2_list --iterations=20000 --threads=1 >> lab2_list.csv
-./lab2_list --iterations=1 --threads=1 --sync=m >> lab2_list.csv
-./lab2_list --iterations=2 --threads=1 --sync=m >> lab2_list.csv
-./lab2_list --iterations=4 --threads=1 --sync=m >> lab2_list.csv
-./lab2_list --iterations=8 --threads=1 --sync=m >> lab2_list.csv
-./lab2_list --iterations=16 --threads=1 --sync=m >> lab2_list.csv
-./lab2_list --iterations=1 --threads=1 --sync=s >> lab2_list.csv
-./lab2_list --iterations=2 --threads=1 --sync=s >> lab2_list.csv
-./lab2_list --iterations=4 --threads=1 --sync=s >> lab2_list.csv
-./lab2_list --iterations=8 --threads=1 --sync=s >> lab2_list.csv
-./lab2_list --iterations=16 --threads=1 --sync=s >> lab2_list.csv
-
-
 
 ./lab2_list --iterations=1000 --threads=16 --sync=m >> lab2_list.csv
 ./lab2_list --iterations=1000 --threads=24 --sync=m >> lab2_list.csv

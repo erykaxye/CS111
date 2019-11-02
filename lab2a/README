@@ -1,0 +1,131 @@
+NAME: Erica Xie
+EMAIL: ericaxie@ucla.edu
+ID: 404920875
+
+
+
+DESCRIPTION OF FILES INCLUDED:
+
+In the lab2a-404920875.tar.gz there is
+
+- lab2_add.c ... a C program that implements and tests a shared variable add function with different numbers of threads and iterations, implements a --yield option that schedules a yield in the add function, a --sync that provides either a mutex lock, a spin lock, or a compare and swap option for the add function. Then the program produces a csv with the name of the test used, the number of threads, the number of iterations, the total number of operations performed, the total run time, the average time per operation, the total at the end of the run. 
+- SortedList.h ... a header file (supplied by the lab manual) describing the interfaces for doubly linked circular list operations.
+- SortedList.c ... a C module that implements insert, delete, lookup, and length methods for a sorted doubly linked list with correct placement of yield calls.
+- lab2_list.c ... a C program that implements a linked list using the commands in SortedList.c with different numbers of threads and iterations, implements a --yield option that schedules yields in each of the functions in SortedList.c, a --sync option that provides either a mutex lock or a spin lock for the linked list. Then the program produces a csv with the name of the test used, the number of threads, the number of iterations, the number of lists, the total number of operations performed, the total run time, the average time per operation. 
+
+Extra Scripts to generate .csv files:
+  - test1 ... script to create and populate the lab2_add.csv file
+  - test2 ... script to create and populate the lab2_list.csv file
+- lab2_add.csv ... containing all of my results for all of the Part-1 tests scripts.
+- lab2_list.csv ... containing all of my results for all of the Part-2 tests scripts .
+
+- graphs (.png files) 
+  For part 1 (lab2_add):
+  - lab2_add-1.png ... threads and iterations required to generate a failure (with and without yields)
+  - lab2_add-2.png ... average time per operation with and without yields.
+  - lab2_add-3.png ... average time per (single threaded) operation vs. the number of iterations.
+  - lab2_add-4.png ... threads and iterations that can run successfully with yields under each of the synchronization options.
+  - lab2_add-5.png ... average time per (protected) operation vs. the number of threads.
+  For part 2 (lab2_list):
+  - lab2_list-1.png ... average time per (single threaded) unprotected operation vs. number of iterations (illustrating the correction of the per-operation cost for the list length).
+  - lab2_list-2.png ... threads and iterations required to generate a failure (with and without yields).
+  - lab2_list-3.png ... iterations that can run (protected) without failure.
+  - lab2_list-4.png ... (length-adjusted) cost per operation vs the number of threads for the various synchronization options.
+Scripts provided in lab manual to generate graphs
+- lab2_add.gp ... creates graphs for part 1
+- lab2_list.gp ... creates graphs for part 2
+
+- A Makefile included that
+  - build: compiles all the .c files
+  - test: runs all test scripts to generate .csv files
+  - graphs: runs the provided scripts to generate graphs 
+  - clean: removes all files created by the Makefile
+  - dist: creates a tarball.
+  
+- A README with a description of the files, answers to the questions proposed in the lab, and list of sources used.  
+
+-----------------------------------
+
+QUESTIONS:  
+
+
+
+QUESTION 2.1.1 - causing conflicts:
+Why does it take many iterations before errors are seen?
+Why does a significantly smaller number of iterations so seldom fail?
+
+It takes many iterations before errors are seen because there is a higher chance of a race condition happening if there are more iterations in general. In addition, more iterations means the threads are accessing the same variable mutltiple times at the same time giving way for more chance of failure. 
+A significantly smaller number of iterations seldom fail because there is a lower chance of a race condition happening if there are less iterations in general. In addition, the threads are not trying to all access the same variable at the same time as many times as more iterations would. 
+-timeslices and delete lookup etc. 
+
+
+
+QUESTION 2.1.2 - cost of yielding:
+Why are the --yield runs so much slower?
+Where is the additional time going?
+Is it possible to get valid per-operation timings if we are using the --yield option?
+If so, explain how. If not, explain why not.
+
+The --yield runs are so much slower because each thread yields (gives up its variable and a context switch happens) when another thread is currently accessing the variable. 
+The additional time is the threads yielding and then waking up and doing their tasks one at a time instead of multiple threads running at once. In addition, there is a context switch for each thread. 
+It is not possible to get valid per-operation timings if we are using the --yield option because we used the real time (Wall time) & it is not only the threads doing operations because they are also yielding to other threads and waking up and making context swtiches. CPU time is the total time the CPU was uesd for processing instructions. 
+
+
+
+QUESTION 2.1.3 - measurement errors:
+Why does the average cost per operation drop with increasing iterations?
+If the cost per iteration is a function of the number of iterations, how do we know how many iterations to run (or what the "correct" cost is)?
+
+The average cost per operation drops with increasing iterations because in the cost of creating a thread is included in the time and creating a thread is very expensive. Therefore, the cost of creating a thread and a few operations leads to a higher cost per operation. However, as the number of iterations goes up, the cost of creating the thread averages out until it is amortized.
+We know how many iterations to run when we do it for many iterations and graph the output. The place where the expeonentially decaying graph plateus (or where theres not much time difference when doing more iterations) is the place at which we can say is the optimal iterations and where the "correct" cost is.
+
+
+
+QUESTION 2.1.4 - costs of serialization:
+Why do all of the options perform similarly for low numbers of threads?
+Why do the three protected operations slow down as the number of threads rises?
+
+The yield option waits for other threads to finish, so if there's less threads, then they don't have to spend as much time waiting. 
+The sync options all perform similarly for low numbers of threads because:
+- for spin lock, a thread is not spinning (or waiting) for as many threads and the cost of creating a thread overshadows the operations. 
+- for a mutex, the cost of creating a lock and the threads overshadowns the actual locking and unlocking
+- for a compare and swap, the difference in calling a different add function is included with the cost of creating a thread.
+The cost of all the options (yielding, spinning, mutex locking/unlocking, compare & swap) is about the same for lower numbers of threads. 
+As the number of threads rises, the threads that are not doing the operations have to wait for their chance and so there's more wasted CPU time if there are more threads because more have to wait (either in a spin lock or spending time waiting for a mutex/compare and swap).
+
+
+
+QUESTION 2.2.1 - scalability of Mutex
+Compare the variation in time per mutex-protected operation vs the number of threads in Part-1 (adds) and Part-2 (sorted lists).
+Comment on the general shapes of the curves, and explain why they have this shape.
+Comment on the relative rates of increase and differences in the shapes of the curves, and offer an explanation for these differences.
+
+In Part 1, the graph of the mutex-protected operation vs the number of threads has an increasing cost per operation as more threads are created, but as more threads are created the cost averages out and stops increasing as steeply.
+In Part 2, the graph of the mutex-protected operation vs the number of threads is relatively flat (slope of about 0). 
+This is because in lab2_list, the operations performed take much longer than lab2_add and therefore the cost of creating the threads is averaged out among the cost per operations in lab2_list-4.png. However in lab2_add, the cost per operation is cheap and therefore more threads makes a difference in the cost per operation. 
+
+
+
+QUESTION 2.2.2 - scalability of spin locks
+Compare the variation in time per protected operation vs the number of threads for list operations protected by Mutex vs Spin locks. Comment on the general shapes of the curves, and explain why they have this shape.
+Comment on the relative rates of increase and differences in the shapes of the curves, and offer an explanation for these differences.
+
+In lab2_list-4.png, we can see that the graphs of time per protected operation vs the number of threads for list operations protected by Mutex & Spin locks follow a similar trend, however the spin locks take more time than the mutex locks. This could be due to the fact that spinning takes up more of the CPU time than testing and setting (which is what mutex does). They both are slightly increasing as the number of threads increases. As explained in 2.2.1, the cost per operations is expensive and therefore averages out the cost of creating more threads, even if it still increases the total cost by a little. 
+
+
+
+-------------------------------------
+
+
+
+RESOURCES:
+Referenced CS 111 spec and the links attached to it
+Referenced TA Zhaoxing Bu's sample graphs
+Referenced Eggert's CS35L Assignment 7 Makefile
+Referenced my CS35L Assignment 7 Makefile
+Referenced Piazza posts
+Referenced clock_gettime, pthread_create, pthread_mutex, pthread_join, and sprintf man pages and attached examples
+http://www.cse.cuhk.edu.hk/~ericlo/teaching/os/lab/9-PThread/Pass.html
+https://www.geeksforgeeks.org/mutex-lock-for-linux-thread-synchronization/
+http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html
+https://www.programmingsimplified.com/c-program-generate-random-numbers 
