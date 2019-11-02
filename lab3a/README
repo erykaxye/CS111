@@ -1,0 +1,39 @@
+NAME: Erica Xie, Michelle Lam
+EMAIL: ericaxie@ucla.edu, laammichelle@gmail.com
+ID: 404920875, 404926523
+
+
+
+DESCRIPTION OF FILES INCLUDED:
+
+In the lab3a-404920875.tar.gz there is
+- A lab3a.c
+  The file utilizes the offsets to identify different parts of the file
+  system, which are described in the nongnu.org documentation.
+  It reads a file system image and analyzes it to produce CSV summaries
+  of what it finds. The CSV outputs six types of output lines which are
+  the superblock summary, group summary, free block entries, free I-node
+  entries, I-node summary, directory entries and indirect block references.
+
+- A ext2_fs.h header file given by the CS 111 spec. 
+
+- A Makefile included that
+  - build: compiles the .c file
+  - clean: removes all files created by the Makefile
+  - dist: creates a tarball.
+
+- A README with a description of the files and list of sources used.
+
+-------------------------------------
+
+
+
+RESOURCES:
+Referenced CS 111 spec and the links attached to it
+Referenced Zhaoxing Bu's Wk 8 Discussion Notes
+Referenced Eggert's CS35L Assignment 7 Makefile
+Referenced my CS35L Assignment 7 Makefile
+Referenced Piazza posts
+Referenced pread(), gmtime(), sprintf()
+Referenced documentaiton on The Second Extended File System
+http://nongnu.org/ext2-doc/ext2.html#dx-root
